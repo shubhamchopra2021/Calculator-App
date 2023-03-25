@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+
+*
+{
+    font-family: sans-serif;
+    font-size: 22px;
+    color: #eb137c;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.container
+{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(243, 248, 252);
+    
+}
+.calculator
+{
+ display: grid;
+ height: 500px;
+ box-shadow:   -5px -5px 12px #fff,
+                5px 5px 12px rgba(0, 0, 0, 0.14);
+ grid-template-columns: repeat(4,70px);
+ /* border: 1px solid black; */
+ border-radius: 20px;
+ 
+}
+#screen
+{
+    text-align: end;
+    height: 100px;
+    grid-column: span 4;
+    /* border: 1px solid black; */
+    padding: 10px;
+    
+    
+}
+#result
+{
+    font-size: 50px;
+    margin-bottom: 20px;
+    font-weight: 100;
+
+}
+#enter_value
+{
+    color: rgb(150, 150, 148);
+}
+button{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+    box-shadow:   -5px -5px 12px #fff,
+                5px 5px 12px rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+
+}
+#equal
+{
+    width: 110px;
+    margin: 10px 15px; 
+    background-color: #eb137c;
+    color: #fff;
+}
+button:active{
+    box-shadow:   5px 5px 12px #fff,
+                5px 5px 12px rgba(0, 0, 0, 0.14);
+}
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <div class="calculator">
+            <div id="screen">
+               
+            </div>
+            <button onclick="clr()">AC</button>
+            <button onclick="del()">DEL</button>
+            <button onclick="display('%')">%</button>
+            <button onclick="display('/')">/</button>
+            <button onclick="display('7')">7</button>
+            <button onclick="display('8')">8</button>
+            <button onclick="display('9')">9</button>
+            <button onclick="display('*')">x</button>
+            <button onclick="display('4')">4</button>
+            <button onclick="display('5')">5</button>
+            <button onclick="display('6')">6</button>
+            <button onclick="display('-')">-</button>
+            <button onclick="display('1')">1</button>
+            <button onclick="display('2')">2</button>
+            <button onclick="display('3')">3</button>
+            <button onclick="display('+')">+</button>
+            <button onclick="display('0')">0</button>
+            <button onclick="display('.')">.</button>
+            <button id="equal" onclick="calculate()">=</button>
+
+        </div>
+    </div>
+
+    <script>
+        let user= '';
+        let h1= document.createElement('h1');
+        h1.id='result';
+        let nodeh1= document.createTextNode('');
+        h1.appendChild(nodeh1);
+
+        let h4= document.createElement('h4');
+        h4.id='enter_value';
+        let nodeh4= document.createTextNode('');
+        h4.appendChild(nodeh4);
+      
+        let screen= document.getElementById('screen');
+        screen.appendChild(h1);
+        screen.appendChild(h4);
+
+        function display(number)
+        {
+          h4.innerHTML += number;
+        }
+
+        function calculate()
+        {
+            let final_val= h4.innerHTML;
+            let final_res= eval(final_val);
+            h1.innerHTML= final_res;
+        }
+        function clr()
+        {
+            h1.innerHTML='';
+            h4.innerHTML='';
+        }
+        function del()
+        {
+            h1.innerHTML=h1.innerHTML.slice(0,-1);
+            h4.innerHTML= h4.innerHTML.slice(0,-1);
+        }
+
+
+    </script>
+</body>
+</html>
